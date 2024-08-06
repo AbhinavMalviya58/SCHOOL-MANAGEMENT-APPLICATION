@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/user"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:textSize="20dp"
+                android:text="admin "/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/newsfeedDeleteNotice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="-100dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/newsfeedDeleteNoticeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mckdckdn cd ds vdv dsv dvds vds vds vds v sdvdsv dvd vd vdsv dsv ds vd  dvd dv  d svd d v d vd ddv dv dvd ds dsv dv dsv dsv dv ds d vd d d d  sd sv dv dv dsv dvd sv dsv d vd vsd vd vdsvdsvdsvdsv ds vd vdv   "
+            android:textSize="17dp"/>
+
+        <ImageView
+            android:id="@+id/newsfeedDeleteNoticeImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"/>
+
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
