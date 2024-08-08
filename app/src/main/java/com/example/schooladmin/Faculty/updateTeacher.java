@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -42,8 +43,8 @@ public class updateTeacher extends AppCompatActivity {
     private TextView updateTeacherName, updateTeacherEmail, updateTeacherPost;
     private Spinner updateSubject;
     private Button deleteTeacherBtn, updateTeacherBtn;
-    private String name,email,post,Image,downloadUrl = "", uniqueKey, category;
-    private Bitmap bitmap ;
+    private String name,email,post,Image,downloadUrl, uniqueKey, category;
+    private Bitmap bitmap = null;
     private final int REQ = 1;
     private DatabaseReference databaseReference,dbref;
     private StorageReference storageReference;
@@ -61,7 +62,6 @@ public class updateTeacher extends AppCompatActivity {
         email = getIntent().getStringExtra("email");
         post = getIntent().getStringExtra("post");
         Image = getIntent().getStringExtra("image");
-
         uniqueKey = getIntent().getStringExtra("key");
         category = getIntent().getStringExtra("category");
 
@@ -83,13 +83,19 @@ public class updateTeacher extends AppCompatActivity {
         updateTeacherBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                name = updateTeacherName.getText().toString();
+                email = updateTeacherEmail.getText().toString();
+                post = updateTeacherPost.getText().toString();
+
                 checkValidation();
             }
         });
 
-        updateTeacherBtn.setOnClickListener(new View.OnClickListener() {
+        deleteTeacherBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Toast.makeText(updateTeacher.this, "hai", Toast.LENGTH_SHORT).show();
                 deleteData();
             }
         });
@@ -107,26 +113,37 @@ public class updateTeacher extends AppCompatActivity {
     }
 
     private void deleteData() {
-        dbref.child(category).child(uniqueKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(updateTeacher.this, "Teacher Deleted Successfully", Toast.LENGTH_SHORT).show();
+//        databaseReference.child(category).child(uniqueKey).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<Void> task) {
+//                        Toast.makeText(updateTeacher.this, "Teacher Deleted Successfully", Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(updateTeacher.this, uploadFaculty.class);
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                        startActivity(intent);
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(updateTeacher.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+        databaseReference.child(category).child(uniqueKey).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(updateTeacher.this, "Teacher Deleted Successfully", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(updateTeacher.this, uploadFaculty.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(updateTeacher.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                    }
-                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(updateTeacher.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void checkValidation() {
-        name = updateTeacherName.getText().toString();
-        email = updateTeacherEmail.getText().toString();
-        post = updateTeacherPost.getText().toString();
 
         if(name.isEmpty()){
             updateTeacherName.setError("Empty");
@@ -138,7 +155,7 @@ public class updateTeacher extends AppCompatActivity {
             updateTeacherPost.setError("Empty");
             updateTeacherPost.requestFocus();
         }else if (bitmap == null) {
-            updateData(Image);
+            updateData("");
         }else {
             updateImage();
         }
@@ -182,7 +199,9 @@ public class updateTeacher extends AppCompatActivity {
         hp.put("post", post);
         hp.put("image", s);
 
-        dbref.child(category).child(uniqueKey).updateChildren(hp).addOnSuccessListener(new OnSuccessListener() {
+        Log.d("updateData", "HashMap contents: " + hp.toString());
+
+        databaseReference.child(category).child(uniqueKey).updateChildren(hp).addOnSuccessListener(new OnSuccessListener() {
             @Override
             public void onSuccess(Object o) {
                 Toast.makeText(updateTeacher.this, "Teacher Updated Successfully", Toast.LENGTH_SHORT).show();
