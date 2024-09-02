@@ -1,5 +1,4 @@
 
-```markdown
 # School Management Application
 
 ## Overview
