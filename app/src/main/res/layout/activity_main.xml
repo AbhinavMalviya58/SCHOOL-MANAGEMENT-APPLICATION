@@ -48,7 +48,6 @@
                     <LinearLayout
                         android:layout_width="85dp"
                         android:layout_height="85dp"
-
                         android:background="@drawable/circle_green"
                         android:gravity="center">
 
@@ -279,6 +278,47 @@
                         android:text="Delete Notice"
                         android:textColor="@color/light_slate_gray"
                         android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="130dp"
+                android:layout_height="60dp"
+                android:layout_margin="10dp"
+                android:id="@+id/goLive"
+                app:cardElevation="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <!--                    <LinearLayout-->
+                    <!--                        android:layout_width="85dp"-->
+                    <!--                        android:layout_height="85dp"-->
+                    <!--                        android:background="@drawable/circle_gray"-->
+                    <!--                        android:gravity="center">-->
+                    <!--                        -->
+                    <!--                    </LinearLayout>-->
+
+                    <!--                    <View-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="1dp"-->
+                    <!--                        android:background="@color/dim_gray"-->
+                    <!--                        android:layout_marginTop="2dp"/>-->
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginTop="10dp"
+                                            android:padding="5dp"
+                                            android:text="Go Live"
+                                            android:textColor="@color/light_slate_gray"
+                                            android:textStyle="bold" />
 
 
                 </LinearLayout>
