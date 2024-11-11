@@ -53,7 +53,6 @@ public class addTeacher extends AppCompatActivity {
     private Bitmap bitmap;
     private DatabaseReference databaseReference,dbref;
     private StorageReference storageReference;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
